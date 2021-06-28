@@ -1,14 +1,17 @@
-const dataInput = document.querySelector('#validation-input');
+const dataInput = document.querySelector("#validation-input");
 
-dataInput.addEventListener("blur", event => {
-  const inputValue = event.currentTarget.value;
-    
-  if (inputValue.length <  dataInput.dataset.length) {
-    event.currentTarget.classList.add("invalid");
-  } 
+dataInput.addEventListener("blur", (event) => {
+const element = event.currentTarget;
+const inputValue = element.value;
 
-  else {
-    event.currentTarget.classList.remove("invalid");
-    event.currentTarget.classList.add("valid");
-  };
+if (inputValue.length === +dataInput.dataset.length) {
+updateClass(element, "valid", "invalid");
+} else {
+updateClass(element, "invalid", "valid");
+}
 });
+
+function updateClass(element, addC, remC) {
+element.classList.remove(remC);
+element.classList.add(addC);
+}
